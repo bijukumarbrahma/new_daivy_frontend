@@ -902,7 +902,7 @@ html, body {
       <div class="header-center">
         <div class="model-pill">
           <div class="pulse-dot"></div>
-          claude-sonnet-4
+          gemini-2.5-flash
         </div>
       </div>
 
@@ -999,11 +999,7 @@ html, body {
    ══════════════════════════════════════════════════════════ */
 
 // ── Config ───────────────────────────────────────────────
-const MODEL   = 'claude-sonnet-4-20250514';
-const API_URL = 'https://api.anthropic.com/v1/messages';
-const SYSTEM  = `You are Daivy AI, a smart, friendly, and highly capable AI assistant. 
-Be helpful, concise, and clear. Use markdown for formatting when appropriate — headings, 
-bold, code blocks, lists — to make responses readable. For code, always specify the language.`;
+const BACKEND_URL = 'https://glint-backend-7d4a.onrender.com/chat';
 
 // ── State ────────────────────────────────────────────────
 let sessions       = [];      // [{ id, title, messages }]
@@ -1327,36 +1323,19 @@ async function handleSend() {
   appendTypingIndicator();
 
   try {
-    const session = getActiveSession();
-    const history = session ? session.messages.map(m => ({
-      role: m.role === 'assistant' ? 'assistant' : 'user',
-      content: m.content
-    })) : [{ role: 'user', content: text }];
-
-    // If session was just created this turn, history includes our message already.
-    // Make sure we don't double-add.
-    const apiMessages = session && session.messages.length > 1
-      ? history
-      : [{ role: 'user', content: text }];
-
-    const response = await fetch(API_URL, {
+    const response = await fetch(BACKEND_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 1000,
-        system: SYSTEM,
-        messages: apiMessages
-      })
+      body: JSON.stringify({ message: text })
     });
 
     if (!response.ok) {
       const err = await response.json().catch(() => ({}));
-      throw new Error(err.error?.message || `HTTP ${response.status}`);
+      throw new Error(err.reply || `HTTP ${response.status}`);
     }
 
     const data = await response.json();
-    const reply = data.content?.find(b => b.type === 'text')?.text || '';
+    const reply = data.reply || '';
 
     removeTypingIndicator();
 
