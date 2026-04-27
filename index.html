@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daivy AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <!-- <div class="logo">
+          <img src="G.png" style="width:24px;height:24px;">
+          <span>Daivy AI</span>
+        </div> -->
+
+        <button class="icon-btn" id="closeSidebar">✕</button>
+      </div>
+
+      <button class="new-chat-btn" id="newChatBtn">+ New Chat</button>
+
+      <div class="sidebar-section-label">Recent</div>
+      <ul class="history-list" id="historyList"></ul>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <button class="icon-btn" id="menuBtn">☰</button>
+
+        <div class="topbar-brand">
+          <img src="G.png" style="width:20px;">
+          <span>Daivy AI</span>
+        </div>
+
+        <button class="icon-btn" id="themeToggle">🌓</button>
+      </header>
+
+      <!-- Chat Area -->
+      <div class="chat-area" id="chatArea">
+
+        <!-- Welcome -->
+        <div class="welcome" id="welcome">
+          <h1>Welcome to Daivy AI</h1>
+          <p>How can I help you today?</p>
+
+          <div class="suggestion-grid">
+            <button class="suggestion-card" data-prompt="Explain quantum computing in simple terms">
+              Explain quantum computing
+            </button>
+
+            <button class="suggestion-card" data-prompt="Write a Python function to reverse a string">
+              Write code snippets
+            </button>
+
+            <button class="suggestion-card" data-prompt="Give me healthy meal prep ideas for the week">
+              Get creative ideas
+            </button>
+
+            <button class="suggestion-card" data-prompt="What are the best practices for web development?">
+              Learn something new
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="messages" id="messages"></div>
+
+      </div>
+
+      <!-- Input -->
+      <div class="input-area">
+        <div class="input-wrapper">
+          <textarea id="userInput" placeholder="Message Daivy AI..." rows="1"></textarea>
+
+          <button class="send-btn" id="sendBtn" disabled>➤</button>
+        </div>
+
+        <p class="input-disclaimer">
+          AI can make mistakes. Please verify important information.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
