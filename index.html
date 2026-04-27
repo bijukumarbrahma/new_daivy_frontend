@@ -334,10 +334,19 @@ html, body {
 .header-center {
   flex: 1;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.model-pill {
+.header-ccenter .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+/* .model-pill {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -350,14 +359,14 @@ html, body {
   font-weight: 500;
   letter-spacing: 0.01em;
   cursor: default;
-}
+} */
 
-.pulse-dot {
+/* .pulse-dot {
   width: 6px; height: 6px;
   background: var(--accent);
   border-radius: 50%;
   animation: pulse-green 2.4s ease-in-out infinite;
-}
+} */
 @keyframes pulse-green {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(0.75); }
@@ -900,9 +909,9 @@ html, body {
       </button>
 
       <div class="header-center">
-        <div class="model-pill">
-          <div class="pulse-dot"></div>
-          gemini-2.5-flash
+        <div class="logo">
+          <div class="logo-mark">D</div>
+          <span class="logo-text">Daivy <span>AI</span></span>
         </div>
       </div>
 
